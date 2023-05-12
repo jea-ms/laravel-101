@@ -22,7 +22,7 @@ This project is the output from [Laravel 8 REST API With Sanctum Authentication]
 - GET [/products]()
     - get all products
 - GET [/products/{id}]()
-    - gell product by id
+    - get product by id
 - GET [/products/search/{name}]()
     - search product by name
 
