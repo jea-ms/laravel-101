@@ -17,57 +17,15 @@ const Header = () => {
                             Company Inc.
                         </h1>
                     </Link>
-                    <button
-                        className="text-white cursor-pointer leading-none px-3 py-1 md:hidden outline-none focus:outline-none "
-                        type="button"
-                        aria-label="button"
-                        onClick={() => setNavbarOpen(!navbarOpen)}
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="#191919"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            className="feather feather-menu"
-                        >
-                            <line x1="3" y1="12" x2="21" y2="12"></line>
-                            <line x1="3" y1="6" x2="21" y2="6"></line>
-                            <line x1="3" y1="18" x2="21" y2="18"></line>
-                        </svg>
+                    <button className='md:hidden black_btn'>
+                        Sign in
                     </button>
                 </div>
-                <div
-                    className={
-                        "md:flex flex-grow items-center" +
-                        (navbarOpen ? " flex" : " hidden")
-                    }
-                >
-                    <nav className="flex-col flex-grow ">
-                        <ul className="flex flex-grow justify-end flex-wrap items-center">
-                            <li>
-                                <Link
-                                    href="/about"
-                                    className="font-medium text-gray-600 hover:text-gray-900 px-5 py-3 flex items-center transition duration-150 ease-in-out"
-                                >
-                                    About Us
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    href="/contact"
-                                    className="font-medium text-gray-600 hover:text-gray-900 px-5 py-3 flex items-center transition duration-150 ease-in-out"
-                                >
-                                    Contact Us
-                                </Link>
-                            </li>
-                        </ul>
-                    </nav>
+                <div className="md:flex hidden flex flex-grow justify-end flex-wrap items-center">
+                    <button className='black_btn'>
+                        Sign in </button>
                 </div>
+
             </div>
         </div>
     )
