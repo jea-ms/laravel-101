@@ -8,7 +8,7 @@ const ProductCard = ({ product }) => {
                 <span className="prod_name">{product.name}</span>
                 <span className="px-3">{product.price}</span>
                 <div className="prod_options">
-                    <span className="px-3"> <FontAwesomeIcon
+                    <span className="md:px-3"> <FontAwesomeIcon
                         icon={faEdit}
                         style={{ fontSize: 15, color: "green" }}
                     /></span>
