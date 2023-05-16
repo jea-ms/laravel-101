@@ -15,18 +15,21 @@ const RootLayout = ({ children }) => {
     // Tell Font Awesome to skip adding the CSS automatically 
     // since it's already imported above
     config.autoAddCss = false;
+
     return (
         <html lang="en">
             <body>
-                <Head>
-                    <title>Company Inc.</title>
-                    <link rel="icon" href="/" />
-                </Head>
-                <Header />
-                <main className='text-black'>
-                    {children}
-                </main>
-                <Footer />
+                <Provider>
+                    <Head>
+                        <title>Company Inc.</title>
+                        <link rel="icon" href="/" />
+                    </Head>
+                    <Header />
+                    <main className='text-black'>
+                        {children}
+                    </main>
+                    <Footer />
+                </Provider>
             </body>
         </html>
     )
