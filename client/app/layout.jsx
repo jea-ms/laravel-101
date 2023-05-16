@@ -1,6 +1,7 @@
 import '@styles/globals.css'
 import '@styles/components.css'
 import { config } from "@fortawesome/fontawesome-svg-core";
+import 'react-tooltip/dist/react-tooltip.css'
 
 import Head from 'next/head'
 import Header from '@components/Header'
