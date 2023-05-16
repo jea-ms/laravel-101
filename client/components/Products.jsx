@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import ProductCard from './ProductCard'
 
 // const productsArray = []
 const productsArray = [
@@ -35,14 +36,11 @@ const productsArray = [
 
 const ProductList = ({ data }) => {
     return (
-        <div className='container flex flex-col items-center justify-center mx-auto rounded-lg'>
+        <div>
             {
                 data.length > 0 ? (
                     data.map((prod) => (
-                        <div>
-                            <span>{prod.name}</span>
-                            <br />
-                        </div>
+                        <ProductCard product={prod}/>
                     ))
                 ) : (
                     <span>No products found</span>
@@ -68,7 +66,7 @@ const Products = () => {
     })
 
     return (
-        <div className="border_div">
+        <div>
             <ProductList data={products} />
         </div>
 
