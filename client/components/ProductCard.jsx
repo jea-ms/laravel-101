@@ -5,27 +5,20 @@ const ProductCard = ({ product }) => {
     return (
         <div className='product_card'>
             <h3>
-                <span>{product.name}</span>
+                <span className="prod_name">{product.name}</span>
+                <span className="px-3">{product.price}</span>
                 <div className="prod_options">
                     <span className="px-3"> <FontAwesomeIcon
                         icon={faEdit}
                         style={{ fontSize: 15, color: "green" }}
                     /></span>
                     <span > <FontAwesomeIcon
-                        icon={faEdit}
-                        style={{ fontSize: 15, color: "green" }}
+                        icon={faTrash}
+                        style={{ fontSize: 15, color: "red" }}
                     /></span>
                 </div>
             </h3>
-            <p>{product.description}</p>
-            <div>
-
-            </div>
-            <div>
-
-            </div>
-
-
+            <h3>{product.description}</h3>
         </div>
     )
 }

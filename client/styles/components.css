@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "AvenirNextW10-Bold";
+  src: url("../public/fonts/AvenirNext.ttf");
+
+}
+
+.Avenir {
+  font-family: AvenirNextW10-Bold;
+  font-display: swap;
+}
+
 .header_list {
   display: flex;
   justify-content: space-between;
@@ -29,4 +40,8 @@
 
 .prod_options {
   @apply flex flex-grow justify-end flex-wrap px-3;
+}
+
+.prod_name {
+  @apply text-2xl Avenir font-semibold text-gray-600 text-center;
 }
