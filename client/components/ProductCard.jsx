@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { Tooltip } from "react-tooltip";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, onEdit, onDelete }) => {
     return (
         <div className='product_card'>
             <h3>
@@ -14,7 +14,7 @@ const ProductCard = ({ product }) => {
                     <span 
                     data-tooltip-id="edit-tooltip"
                     data-tooltip-content="Edit"
-                    onClick={() => {}}
+                    onClick={() => onEdit(product.id)}
                     className="md:px-3"> <FontAwesomeIcon
                         icon={faEdit}
                         style={{ fontSize: 15, color: "green" }}
@@ -23,7 +23,7 @@ const ProductCard = ({ product }) => {
                     <span 
                     data-tooltip-id="del-tooltip"
                     data-tooltip-content="Delete"
-                    onClick={() => {}}> <FontAwesomeIcon
+                    onClick={() => onDelete(product.id)}> <FontAwesomeIcon
                         icon={faTrash}
                         style={{ fontSize: 15, color: "red" }}
                     /></span>
