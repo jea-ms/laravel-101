@@ -30,20 +30,20 @@ const Home = () => {
     }
 
     const deleteProduct = async (id) => {
-        // const hasConfirmed = confirm("Are you sure you want to delete?")
-        // if (hasConfirmed) {
-        //     try {
-        //         await fetch(`http://localhost:8000/api/products/${id}`, {
-        //             method: 'DELETE',
-        //         }).then(() => {
-        //             setProducts(products.filter((prod) => prod.id !== id))
-        //         }).catch(err => {
-        //             console.log(err)
-        //         })
-        //     } catch (error) {
-        //         console.log(error)
-        //     }
-        // }
+        const hasConfirmed = confirm("Are you sure you want to delete?")
+        if (hasConfirmed) {
+            try {
+                await fetch(`http://localhost:8000/api/products/${id}`, {
+                    method: 'DELETE',
+                }).then(() => {
+                    setProducts(products.filter((prod) => prod.id !== id))
+                }).catch(err => {
+                    console.log(err)
+                })
+            } catch (error) {
+                console.log(error)
+            }
+        }
         console.log('delete', id)
     }
     return (
