@@ -17,11 +17,12 @@ const Header = () => {
                             Company Inc.
                         </h1>
                     </Link>
-                    <button className='md:hidden black_btn'>
+                    <div className="hidden"><button className='hidden black_btn '>
                         Sign in
-                    </button>
+                    </button></div>
+                    
                 </div>
-                <div className="md:flex hidden flex flex-grow justify-end flex-wrap items-center">
+                <div className="hidden flex flex-grow justify-end flex-wrap items-center">
                     <button className='black_btn'>
                         Sign in </button>
                 </div>
