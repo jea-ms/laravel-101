@@ -20,13 +20,12 @@ const NewProduct = () => {
         setSubmitting(true)
 
         try {
-            const response = await fetch('/api/prompt/new', {
+            const response = await fetch(`http://localhost:8000/api/products/`, {
                 method: 'POST',
-                body: JSON.stringify({
-                    prompt: post.prompt,
-                    userId: session?.user.id,
-                    tag: post.tag
-                })
+                headers: {
+                  'Content-type': 'application/json'
+                },
+                body: JSON.stringify(product)
             })
 
             if (response.ok) {
