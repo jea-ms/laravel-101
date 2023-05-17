@@ -39,7 +39,6 @@
 .add-form div {
   display: flex;
   align-items: center;
-  padding: 5px 20px;
   justify-content: space-between;
 }
 
@@ -56,11 +55,11 @@
 }
 
 .form_label{
-  @apply block items-center px-3 py-3 ml-2 font-medium text-black;
+  @apply block items-center w-full px-3 py-3 ml-2 font-medium text-black;
 }
 
 .form_input {
-  @apply w-full border border-gray-600 px-3 py-3 mt-2 rounded-md text-gray-800 font-semibold hover:border-gray-900;
+  @apply w-full border border-gray-600 px-3 ml-5 mr-5 py-3 mt-2 rounded-md text-gray-800 font-semibold hover:border-gray-900;
 }
 
 .form_textarea {

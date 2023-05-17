@@ -1,8 +1,8 @@
 const Form = ({ type, product, setProduct, submitting, onSubmit }) => {
     return (
         <form className="add-form" onSubmit={onSubmit}>
-            <label className='form_label'><span>Name</span></label>
             <div>
+            <label className='form_label'><span>Name</span></label>
                 <input
                     type='text'
                     value={product.name}
@@ -15,8 +15,8 @@ const Form = ({ type, product, setProduct, submitting, onSubmit }) => {
                     className='form_input'
                 />
             </div>
-            <label className='form_label'><span>Slug</span></label>
             <div>
+            <label className='form_label'><span>Slug</span></label>
                 <input
                     type='text'
                     value={product.slug}
@@ -29,8 +29,8 @@ const Form = ({ type, product, setProduct, submitting, onSubmit }) => {
                     className='form_input'
                 />
             </div>
-            <label className='form_label'><span>Description</span></label>
             <div>
+            <label className='form_label'><span>Description</span></label>
                 <textarea
                     value={product.description}
                     onChange={(e) => setProduct({
@@ -42,8 +42,8 @@ const Form = ({ type, product, setProduct, submitting, onSubmit }) => {
                     className='form_input'
                 />
             </div>
-            <label className='form_label'><span>Price</span></label>
             <div>
+            <label className='form_label'><span>Price</span></label>
                 <input
                     type='number'
                     value={product.price}
