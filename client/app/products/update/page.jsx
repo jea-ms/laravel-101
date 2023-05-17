@@ -28,13 +28,17 @@ const UpdateProduct = () => {
     }
 
     if (prodId) getProdDetails()
-  },[prodId])
+  }, [prodId])
+
+  const onCancel = async () => {
+    router.push('/')
+  }
 
   const editProduct = async (e) => {
     e.preventDefault()
     setSubmitting(true)
 
-    if(!prodId) return alert('Product not found')
+    if (!prodId) return alert('Product not found')
 
     try {
       const response = await fetch(`http://localhost:8000/api/products/${prodId}`, {
@@ -59,7 +63,9 @@ const UpdateProduct = () => {
       <div className="container flex flex-col items-center justify-center mx-auto rounded-lg ">
         <TitlePage
           title='Edit Product'
-          showBtnAdd={false} />
+          showBtnAdd={false}
+          onAdd={() => { }}
+          onCancel={onCancel} />
         <div className='object-cover object-center w-3/4 mb-10 g327 border rounded-lg shadow-md'>
           <Form
             type='Edit'
