@@ -44,27 +44,21 @@ const Products = () => {
     }
 
     const deleteProduct = async (id) => {
-        const token = '5|h2H5IwdCNcETaEan88AlmIpColpP8QRJioa6kXRO'
         const hasConfirmed = confirm("Are you sure you want to delete?")
         if (hasConfirmed) {
             try {
                 await fetch(`http://localhost:8000/api/products/${id}`, {
                     method: 'DELETE',
-                    headers: {
-                        'Content-type': 'application/json',
-                        'Authorization': `Bearer ${token}`,
-                      },
                 }).then(() => {
                     setProducts(products.filter((prod) => prod.id !== id))
                 }).catch(err => {
                     console.log(err)
                   })
-                
             } catch (error) {
                 console.log(error)
             }
         }
-        console.log('delete', id)
+        // console.log('delete', id)
     }
 
     return (
