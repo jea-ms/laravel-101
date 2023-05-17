@@ -9,7 +9,7 @@ const TitlePage = ({ title, showBtnAdd, onAdd, onCancel }) => {
                     Add
                 </button>
             ) : (
-                <button onClick={onCancel} className='black_btn'>
+                <button onClick={onCancel} className='red_btn'>
                     Cancel
                 </button>
             )}
