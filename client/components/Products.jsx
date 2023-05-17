@@ -21,8 +21,7 @@ const ProductList = ({ data, onEdit, onDelete }) => {
     )
 }
 
-const Products = ({products, onEdit, onDelete}) => {
-    
+const Products = ({ products, onEdit, onDelete }) => {
     return (
         <div>
             <ProductList
@@ -30,7 +29,6 @@ const Products = ({products, onEdit, onDelete}) => {
                 onEdit={onEdit}
                 onDelete={onDelete} />
         </div>
-
     )
 }
 

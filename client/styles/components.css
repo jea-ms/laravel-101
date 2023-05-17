@@ -24,7 +24,6 @@
   background: #f4f4f4;
   margin: 5px;
   padding: 10px 20px;
-  cursor: pointer;
 }
 
 .product_card h3 {
@@ -37,22 +36,12 @@
   margin-bottom: 40px;
 }
 
-.form-control {
-  margin: 20px 0;
+.add-form div {
+  display: flex;
+  align-items: center;
+  padding: 5px 20px;
+  justify-content: space-between;
 }
-
-.form-control label {
-  display: block;
-}
-
-.form-control input {
-  width: 100%;
-  height: 40px;
-  margin: 5px;
-  padding: 3px 7px;
-  font-size: 17px;
-}
-
 
 .black_btn {
   @apply inline-flex items-center px-5 py-3 mt-2 font-medium text-white transition duration-500 ease-in-out transform bg-transparent border rounded-lg bg-gray-900;
@@ -64,6 +53,14 @@
 
 .prod_name {
   @apply text-2xl Avenir font-semibold text-gray-600 text-center;
+}
+
+.form_label{
+  @apply block items-center px-3 py-3 ml-2 font-medium text-black;
+}
+
+.form_input {
+  @apply w-full border border-gray-600 px-3 py-3 mt-2 rounded-md text-gray-800 font-semibold hover:border-gray-900;
 }
 
 .form_textarea {
