@@ -1,10 +1,12 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import Products from "@components/Products"
 import TitlePage from "@components/TitlePage"
 
 const Home = () => {
+    const router = useRouter()
     const [products, setProducts] = useState([])
 
 useEffect(() => {
@@ -19,7 +21,7 @@ useEffect(() => {
 }, [])
 
 const editProduct = async (id) => {
-
+    router.push(`/products/update?id=${id}`)
     console.log('edit', id)
 }
 
