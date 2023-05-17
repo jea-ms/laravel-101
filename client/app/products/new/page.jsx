@@ -6,6 +6,7 @@ import Form from "@components/Form"
 import TitlePage from "@components/TitlePage"
 
 const NewProduct = () => {
+  const API_PRODUCT_URL = process.env.API_PRODUCT_URL
   const router = useRouter()
   const [submitting, setSubmitting] = useState(false)
   const [product, setProduct] = useState({
@@ -24,7 +25,7 @@ const NewProduct = () => {
     setSubmitting(true)
 
     try {
-      const response = await fetch(`http://localhost:8000/api/products/`, {
+      const response = await fetch(API_PRODUCT_URL, {
         method: 'POST',
         headers: {
           'Content-type': 'application/json'

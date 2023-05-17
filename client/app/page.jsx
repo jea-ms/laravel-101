@@ -6,12 +6,15 @@ import Products from "@components/Products"
 import TitlePage from "@components/TitlePage"
 
 const Home = () => {
+    const API_PRODUCT_URL = process.env.API_PRODUCT_URL
+
     const router = useRouter()
     const [products, setProducts] = useState([])
 
     useEffect(() => {
         const getProducts = async () => {
-            const res = await fetch(`http://localhost:8000/api/products/`)
+            console.log(API_PRODUCT_URL);
+            const res = await fetch( '' + API_PRODUCT_URL)
             const data = await res.json()
 
             setProducts(data)
@@ -33,7 +36,7 @@ const Home = () => {
         const hasConfirmed = confirm("Are you sure you want to delete?")
         if (hasConfirmed) {
             try {
-                await fetch(`http://localhost:8000/api/products/${id}`, {
+                await fetch( API_PRODUCT_URL + id, {
                     method: 'DELETE',
                 }).then(() => {
                     setProducts(products.filter((prod) => prod.id !== id))

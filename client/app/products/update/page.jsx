@@ -7,6 +7,7 @@ import TitlePage from "@components/TitlePage"
 
 
 const UpdateProduct = () => {
+  const API_PRODUCT_URL = process.env.API_PRODUCT_URL
   const router = useRouter()
   const searchParams = useSearchParams()
   const prodId = searchParams.get('id')
@@ -21,7 +22,7 @@ const UpdateProduct = () => {
 
   useEffect(() => {
     const getProdDetails = async () => {
-      const res = await fetch(`http://localhost:8000/api/products/${prodId}`)
+      const res = await fetch(API_PRODUCT_URL + prodId)
       const data = await res.json()
 
       setProduct(data)
@@ -41,7 +42,7 @@ const UpdateProduct = () => {
     if (!prodId) return alert('Product not found')
 
     try {
-      const response = await fetch(`http://localhost:8000/api/products/${prodId}`, {
+      const response = await fetch(API_PRODUCT_URL + prodId, {
         method: 'PUT',
         headers: {
           'Content-type': 'application/json'
