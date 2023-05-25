@@ -3,11 +3,17 @@
 import LoginForm from '@components/LoginForm'
 import TitlePage from '@components/TitlePage'
 import Link from 'next/link'
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 
 const Login = () => {
   const API_URL = process.env.API_URL
   const router = useRouter()
+
+  const [user, setUser] = useState({
+    email: '',
+    password: '',
+  })
 
   const loginUser = async () => {
     e.preventDefault()
@@ -19,11 +25,13 @@ const Login = () => {
         headers: {
           'Content-type': 'application/json'
         },
-        body: JSON.stringify(product)
+        body: JSON.stringify(user)
       })
 
       if (response.ok) {
-        router.push('/')
+        // router.push('/')
+        console.log(response)
+        // cookies().set("currentUser", JSON.stringify(response))
       }
     } catch (error) {
       console.log(error)
@@ -47,6 +55,8 @@ const Login = () => {
         <div className='object-cover object-center w-3/4 mb-10 g327 border rounded-lg shadow-md'>
           <LoginForm
             type='Sign In'
+            user={user}
+            setUser={setUser}
             onSubmit={loginUser}
           />
         </div>
