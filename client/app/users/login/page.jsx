@@ -2,11 +2,12 @@
 
 import LoginForm from '@components/LoginForm'
 import TitlePage from '@components/TitlePage'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
 const Login = () => {
   const router = useRouter()
-  
+
   const loginUser = async () => {
     router.push('/')
   }
@@ -25,10 +26,13 @@ const Login = () => {
           onCancel={onCancel} />
         <div className='object-cover object-center w-3/4 mb-10 g327 border rounded-lg shadow-md'>
           <LoginForm
-            type='login'
+            type='Sign In'
             onSubmit={loginUser}
           />
         </div>
+        <span>New to Company?
+          <Link href="/"> Create new account.</Link>
+        </span>
       </div>
     </div>
   )
