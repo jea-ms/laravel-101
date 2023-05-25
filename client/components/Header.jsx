@@ -7,7 +7,7 @@ const Header = () => {
     const router = useRouter()
 
     const loginBtn = () => {
-        router.push(`/products/new`)
+        router.push(`/users/login`)
     }
     return (
         <div className="fixed top-0 w-full z-30 clearNav md:bg-opacity-90 transition duration-300 ease-in-out">
