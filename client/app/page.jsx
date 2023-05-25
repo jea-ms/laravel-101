@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Products from "@components/Products"
 import TitlePage from "@components/TitlePage"
+import axios from 'axios'
 
 const Home = () => {
     const API_PRODUCT_URL = process.env.API_PRODUCT_URL
@@ -14,7 +15,7 @@ const Home = () => {
     useEffect(() => {
         const getProducts = async () => {
             console.log(API_PRODUCT_URL);
-            const res = await fetch( '' + API_PRODUCT_URL)
+            const res = await fetch('' + API_PRODUCT_URL)
             const data = await res.json()
 
             setProducts(data)
@@ -22,6 +23,18 @@ const Home = () => {
 
         getProducts()
     }, [])
+
+    const login = async () => {
+        axios.get('/sanctum/csrf-cookie').then(() => {
+            axios.post('/api/login').then(response => {
+                if (response.data.error) {
+                    console.log(response.data.error)
+                } else {
+                    response
+                }
+            })
+        })
+    }
 
     const editProduct = async (id) => {
         router.push(`/products/update?id=${id}`)
@@ -36,7 +49,7 @@ const Home = () => {
         const hasConfirmed = confirm("Are you sure you want to delete?")
         if (hasConfirmed) {
             try {
-                await fetch( API_PRODUCT_URL + id, {
+                await fetch(API_PRODUCT_URL + id, {
                     method: 'DELETE',
                 }).then(() => {
                     setProducts(products.filter((prod) => prod.id !== id))
