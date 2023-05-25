@@ -6,10 +6,30 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
 const Login = () => {
+  const API_URL = process.env.API_URL
   const router = useRouter()
 
   const loginUser = async () => {
-    router.push('/')
+    e.preventDefault()
+    setSubmitting(true)
+
+    try {
+      const response = await fetch(API_URL + '/login', {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify(product)
+      })
+
+      if (response.ok) {
+        router.push('/')
+      }
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   const onCancel = async () => {
@@ -30,8 +50,13 @@ const Login = () => {
             onSubmit={loginUser}
           />
         </div>
-        <span>New to Company?
-          <Link href="/"> Create new account.</Link>
+        <span>New to Company? 
+          <Link href="/"
+          style={{
+            textDecoration: 'underline',
+            color: 'blue',
+          }}
+          >Create new account.</Link>
         </span>
       </div>
     </div>
