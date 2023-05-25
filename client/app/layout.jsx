@@ -8,6 +8,7 @@ import 'react-tooltip/dist/react-tooltip.css'
 import Head from 'next/head'
 import Header from '@components/Header'
 import Footer from '@components/Footer'
+import Provider from '@components/Provider';
 
 export const metadata = {
     title: "Company Inc.",
@@ -22,7 +23,7 @@ const RootLayout = ({ children }) => {
     return (
         <html lang="en">
             <body>
-                
+                <Provider>
                     <Head>
                         <title>Company Inc.</title>
                         <link rel="icon" href="/" />
@@ -38,7 +39,7 @@ const RootLayout = ({ children }) => {
                         </section>
                     </main>
                     <Footer />
-                
+                </Provider>
             </body>
         </html>
     )
