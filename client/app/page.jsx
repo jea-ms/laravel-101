@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Products from "@components/Products"
 import TitlePage from "@components/TitlePage"
-import axios from 'axios'
+import axios from '@libs/axios'
 
 const Home = () => {
     const API_PRODUCT_URL = process.env.API_PRODUCT_URL
@@ -70,3 +70,13 @@ const Home = () => {
 }
 
 export default Home
+
+export async function getStaticProps() {
+    const res = await axios.get('/login');
+    const posts = await res.json();
+    return {
+      props: {
+        currentUser: Response.data.data,
+      },
+    };
+  }
