@@ -24,24 +24,12 @@ const Home = () => {
         getProducts()
     }, [])
 
-    const login = async () => {
-        axios.get('/sanctum/csrf-cookie').then(() => {
-            axios.post('/api/login').then(response => {
-                if (response.data.error) {
-                    console.log(response.data.error)
-                } else {
-                    response
-                }
-            })
-        })
-    }
-
-    const editProduct = async (id) => {
+    const editProduct = (id) => {
         router.push(`/products/update?id=${id}`)
         console.log('edit', id)
     }
 
-    const onAdd = async (id) => {
+    const onAdd = () => {
         router.push(`/products/new`)
     }
 
