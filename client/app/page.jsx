@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Products from "@components/Products"
 import TitlePage from "@components/TitlePage"
+import Cookies from 'js-cookie'
 
 const Home = () => {
     const API_PRODUCT_URL = process.env.API_PRODUCT_URL
@@ -11,10 +12,19 @@ const Home = () => {
     const router = useRouter()
     const [products, setProducts] = useState([])
 
+    const cookie = Cookies.get('currentUser')
+    const token = Cookies.get('apiToken')
+
+    const [currentUser, setCurrentUser] = useState()
+    const [currentToken, setCurrentToken] = useState()
+
     useEffect(() => {
+        setCurrentUser(cookie ? JSON.parse(cookie) : null)
+        setCurrentToken(token ? JSON.parse(token) : '')
+
         const getProducts = async () => {
             console.log(API_PRODUCT_URL);
-            const res = await fetch( '' + API_PRODUCT_URL)
+            const res = await fetch('' + API_PRODUCT_URL)
             const data = await res.json()
 
             setProducts(data)
@@ -36,8 +46,13 @@ const Home = () => {
         const hasConfirmed = confirm("Are you sure you want to delete?")
         if (hasConfirmed) {
             try {
-                await fetch( API_PRODUCT_URL + id, {
+                await fetch(API_PRODUCT_URL + id, {
                     method: 'DELETE',
+                    headers: {
+                        'Content-type': 'application/json',
+                        'Authorization': 'Bearer ' + currentToken,
+                        'Accept': 'application/json',
+                      },
                 }).then(() => {
                     setProducts(products.filter((prod) => prod.id !== id))
                 }).catch(err => {
