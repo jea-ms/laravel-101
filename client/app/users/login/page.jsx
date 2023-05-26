@@ -26,6 +26,8 @@ const Login = ({ data }) => {
     setCurrentUser(cookie ? JSON.parse(cookie) : null)
     setCurrentToken(token ? JSON.parse(token) : '')
 
+    if(cookie) router.push("/")
+
   }, [])
 
   const loginUser = async (e) => {
@@ -95,7 +97,6 @@ const Login = ({ data }) => {
             }}
           >Create new account.</Link>
         </span>
-        <p> Data from cookie: {cookie}</p>
       </div>
     </div>
   )
