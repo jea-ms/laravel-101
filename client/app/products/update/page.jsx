@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Form from "@components/Form"
 import TitlePage from "@components/TitlePage"
+import Cookies from 'js-cookie'
 
 
 const UpdateProduct = () => {
@@ -20,7 +21,16 @@ const UpdateProduct = () => {
     price: '',
   })
 
+  const cookie = Cookies.get('currentUser')
+  const token = Cookies.get('apiToken')
+
+  const [currentUser, setCurrentUser] = useState()
+  const [currentToken, setCurrentToken] = useState()
+
   useEffect(() => {
+    setCurrentUser(cookie ? JSON.parse(cookie) : null)
+    setCurrentToken(token ? JSON.parse(token) : '')
+
     const getProdDetails = async () => {
       const res = await fetch(API_PRODUCT_URL + prodId)
       const data = await res.json()
@@ -45,7 +55,9 @@ const UpdateProduct = () => {
       const response = await fetch(API_PRODUCT_URL + prodId, {
         method: 'PUT',
         headers: {
-          'Content-type': 'application/json'
+          'Content-type': 'application/json',
+          'Authorization': 'Bearer ' + currentToken,
+          'Accept': 'application/json',
         },
         body: JSON.stringify(product)
       })
