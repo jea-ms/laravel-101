@@ -6,9 +6,9 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Cookies from 'js-cookie'
+import axios from 'axios'
 
-
-const Login = ({data}) => {
+const Login = ({ data }) => {
   const API_URL = process.env.API_URL
   const router = useRouter()
   const cookie = Cookies.get('currentUser')
@@ -20,38 +20,68 @@ const Login = ({data}) => {
 
   const loginUser = async (e) => {
     e.preventDefault()
-    // setSubmitting(true)
 
-    const url = API_URL + '/login'
-    console.log(url)
+    const url = API_URL + '/login/'
+
     try {
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json'
-        },
-        body: JSON.stringify(user)
-      })
+      await axios.post('http://localhost:8000/api/login', user).then((response) => {
+          console.log(response.data)
+        })
 
-      // const data = response.data
-
-      if (response.ok) {
-        Cookies.set('currentUser', JSON.stringify(data), {expires: 1440})
-        // router.push('/users/login')
-      }
-
-      console.log(response)
+      // await axios.get('http://localhost:8000/sanctum/csrf-cookie', {
+      //   headers: {
+      //     'X-Requested-With': 'XMLHttpRequest'
+      //   },
+      //   withCredentials: true,
+      // }).then(() => {
+        
+      // })
     } catch (error) {
       console.log(error)
-    } finally {
-      setSubmitting(false)
-      console.log("finally")
-
     }
   }
 
+  // const loginUser = async (e) => {
+  //   e.preventDefault()
+  //   // setSubmitting(true)
+
+  //   const url = API_URL + '/login'
+  //   // console.log(url)
+  //   try {
+  //     const axiosInstance = await axios.get('http://localhost:8000/sanctum/csrf-cookie', {
+  //       headers: {
+  //         'X-Requested-With': 'XMLHttpRequest'
+  //       },
+  //       withCredentials: true,
+  //     }).then(getcsrvf => {
+  //       // console.log(Cookies.get('XSRF-TOKEN'))
+  //        axios.post('http://localhost:8000/api/login', {
+  //         withCredentials: true,
+  //         body: user,
+  //       })
+  //         .then(function (response) {
+  //           console.log(response)
+  //         })
+
+  //     })
+
+  //     if (response.ok) {
+  //       // Cookies.set('currentUser', JSON.stringify(data), {expires: 1440})
+  //       // router.push('/users/login')
+  //     }
+
+  //     console.log(response)
+  //   } catch (error) {
+  //     console.log(error)
+  //   } finally {
+  //     // setSubmitting(false)
+  //     console.log("finally")
+
+  //   }
+  // }
+
   const onCancel = async () => {
-    Cookies.set('name', "jea", {expires: 1440})
+    Cookies.set('name', "jea", { expires: 1440 })
     router.push('/')
   }
 
@@ -72,12 +102,12 @@ const Login = ({data}) => {
             onSubmit={loginUser}
           />
         </div>
-        <span>New to Company? 
+        <span>New to Company?
           <Link href="/"
-          style={{
-            textDecoration: 'underline',
-            color: 'blue',
-          }}
+            style={{
+              textDecoration: 'underline',
+              color: 'blue',
+            }}
           >Create new account.</Link>
         </span>
         <p> Data from cookie: {cookie}</p>
