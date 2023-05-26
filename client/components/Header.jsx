@@ -2,11 +2,18 @@
 
 import Link from "next/link";
 import { useRouter } from 'next/navigation'
+import Cookies from 'js-cookie'
 
 const Header = () => {
     const router = useRouter()
+    const cookie = Cookies.get('currentUser')
+    const currentUser = cookie ? JSON.parse(cookie) : null
 
     const loginBtn = () => {
+        router.push(`/users/login`)
+    }
+
+    const logoutBtn = () => {
         router.push(`/users/login`)
     }
 
@@ -22,15 +29,44 @@ const Header = () => {
                             Company Inc.
                         </h1>
                     </Link>
-                    <button onClick={loginBtn} className='md:hidden black_btn'>
-                        Sign in
-                    </button>
+                    {
+                        currentUser ? (
+                            <>
+                                <span className='md:hidden'>Hello, {currentUser.name}!</span>
+                                <button onClick={logoutBtn} className='md:hidden black_btn'>
+                                    Sign Out
+                                </button>
+                            </>
+                        ) : (
+                            <>
+                                <button onClick={loginBtn} className='md:hidden black_btn'>
+                                    Sign in
+                                </button>
+                            </>
+                        )
+                    }
+                </div>
 
-                </div>
-                <div className="md:flex hidden flex flex-grow justify-end flex-wrap items-center">
-                    <button onClick={loginBtn} className='black_btn'>
-                    Sign in </button>
-                </div>
+
+                {
+                    currentUser ? (
+                        <>
+
+                            <div className="md:flex hidden flex flex-grow justify-end flex-wrap items-center">
+                                <span>Hello, {currentUser.name}!</span>
+                                <button onClick={logoutBtn} className='black_btn'>
+                                    Sign Out </button>
+                            </div>
+                        </>
+                    ) : (
+                        <>
+                            <div className="md:flex hidden flex flex-grow justify-end flex-wrap items-center">
+                                <button onClick={loginBtn} className='black_btn'>
+                                    Sign In </button>
+                            </div>
+                        </>
+                    )
+                }
 
             </div>
         </div>

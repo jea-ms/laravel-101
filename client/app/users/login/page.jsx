@@ -12,6 +12,7 @@ const Login = ({data}) => {
   const API_URL = process.env.API_URL
   const router = useRouter()
   const cookie = Cookies.get('currentUser')
+  const currentUser = cookie ? JSON.parse(cookie) : null
 
   const [user, setUser] = useState({
     email: '',
@@ -38,13 +39,14 @@ const Login = ({data}) => {
       if (response.ok) {
         Cookies.set('currentUser', JSON.stringify(data.user), {expires: 1440})
         Cookies.set('apiToken', JSON.stringify(data.token), {expires: 1440})
-        router.push('/users/login')
+        router.push('/')
       } else {
         Cookies.set('currentUser', '', {expires: 0})
         Cookies.set('apiToken', '', {expires: 0})
       }
 
       console.log(response)
+      
     } catch (error) {
       console.log(error)
     } finally {
