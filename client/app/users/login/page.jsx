@@ -39,6 +39,9 @@ const Login = ({data}) => {
         Cookies.set('currentUser', JSON.stringify(data.user), {expires: 1440})
         Cookies.set('apiToken', JSON.stringify(data.token), {expires: 1440})
         router.push('/users/login')
+      } else {
+        Cookies.set('currentUser', '', {expires: 0})
+        Cookies.set('apiToken', '', {expires: 0})
       }
 
       console.log(response)
