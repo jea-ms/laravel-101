@@ -3,14 +3,23 @@
 import Link from "next/link";
 import { useRouter } from 'next/navigation'
 import Cookies from 'js-cookie'
+import { useState, useEffect } from 'react'
 
 const Header = () => {
     const API_URL = process.env.API_URL
     const router = useRouter()
     const cookie = Cookies.get('currentUser')
-    const currentUser = cookie ? JSON.parse(cookie) : null
     const token = Cookies.get('apiToken')
-    const currentToken = token ? JSON.parse(token) : ''
+    const [currentUser, setCurrentUser] = useState()
+    const [currentToken, setCurrentToken] = useState()
+
+    useEffect(() => {
+        
+        setCurrentUser(cookie ? JSON.parse(cookie) : null)
+        
+        setCurrentToken(token ? JSON.parse(token) : '')
+        
+    }, [])
 
     const loginBtn = () => {
         router.push(`/users/login`)
@@ -30,7 +39,7 @@ const Header = () => {
             })
 
             const data = await response.json()
-            console.log(data)
+            // console.log(data)
             if (response.ok) {
                 Cookies.set('currentUser', '', { expires: 0 })
                 Cookies.set('apiToken', '', { expires: 0 })

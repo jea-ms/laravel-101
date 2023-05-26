@@ -3,21 +3,30 @@
 import LoginForm from '@components/LoginForm'
 import TitlePage from '@components/TitlePage'
 import Link from 'next/link'
-import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Cookies from 'js-cookie'
+import { useState, useEffect } from 'react'
 
 
-const Login = ({data}) => {
+const Login = ({ data }) => {
   const API_URL = process.env.API_URL
   const router = useRouter()
   const cookie = Cookies.get('currentUser')
-  const currentUser = cookie ? JSON.parse(cookie) : null
+  const token = Cookies.get('apiToken')
 
   const [user, setUser] = useState({
     email: '',
     password: '',
   })
+
+  const [currentUser, setCurrentUser] = useState()
+  const [currentToken, setCurrentToken] = useState()
+
+  useEffect(() => {
+    setCurrentUser(cookie ? JSON.parse(cookie) : null)
+    setCurrentToken(token ? JSON.parse(token) : '')
+
+  }, [])
 
   const loginUser = async (e) => {
     e.preventDefault()
@@ -37,16 +46,16 @@ const Login = ({data}) => {
       const data = await response.json()
       console.log(data)
       if (response.ok) {
-        Cookies.set('currentUser', JSON.stringify(data.user), {expires: 1440})
-        Cookies.set('apiToken', JSON.stringify(data.token), {expires: 1440})
+        Cookies.set('currentUser', JSON.stringify(data.user), { expires: 1440 })
+        Cookies.set('apiToken', JSON.stringify(data.token), { expires: 1440 })
         router.push('/')
       } else {
-        Cookies.set('currentUser', '', {expires: 0})
-        Cookies.set('apiToken', '', {expires: 0})
+        Cookies.set('currentUser', '', { expires: 0 })
+        Cookies.set('apiToken', '', { expires: 0 })
       }
 
       console.log(response)
-      
+
     } catch (error) {
       console.log(error)
     } finally {
@@ -57,7 +66,7 @@ const Login = ({data}) => {
   }
 
   const onCancel = async () => {
-    Cookies.set('name', "jea", {expires: 1440})
+    Cookies.set('name', "jea", { expires: 1440 })
     router.push('/')
   }
 
@@ -78,12 +87,12 @@ const Login = ({data}) => {
             onSubmit={loginUser}
           />
         </div>
-        <span>New to Company? 
+        <span>New to Company?
           <Link href="/"
-          style={{
-            textDecoration: 'underline',
-            color: 'blue',
-          }}
+            style={{
+              textDecoration: 'underline',
+              color: 'blue',
+            }}
           >Create new account.</Link>
         </span>
         <p> Data from cookie: {cookie}</p>
