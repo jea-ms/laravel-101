@@ -33,18 +33,18 @@ const Login = ({data}) => {
         body: JSON.stringify(user)
       })
 
-      // const data = response.data
-
+      const data = await response.json()
+      console.log(data)
       if (response.ok) {
         Cookies.set('currentUser', JSON.stringify(data), {expires: 1440})
-        // router.push('/users/login')
+        router.push('/users/login')
       }
 
       console.log(response)
     } catch (error) {
       console.log(error)
     } finally {
-      setSubmitting(false)
+      // setSubmitting(false)
       console.log("finally")
 
     }
