@@ -5,16 +5,44 @@ import { useRouter } from 'next/navigation'
 import Cookies from 'js-cookie'
 
 const Header = () => {
+    const API_URL = process.env.API_URL
     const router = useRouter()
     const cookie = Cookies.get('currentUser')
     const currentUser = cookie ? JSON.parse(cookie) : null
+    const token = Cookies.get('apiToken')
+    const currentToken = token ? JSON.parse(token) : ''
 
     const loginBtn = () => {
         router.push(`/users/login`)
     }
 
-    const logoutBtn = () => {
-        router.push(`/users/login`)
+    const logoutBtn = async () => {
+        const url = API_URL + '/logout'
+
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json',
+                    'Authorization': 'Bearer ' + currentToken,
+                    'Accept': 'application/json',
+                }
+            })
+
+            const data = await response.json()
+            console.log(data)
+            if (response.ok) {
+                Cookies.set('currentUser', '', { expires: 0 })
+                Cookies.set('apiToken', '', { expires: 0 })
+                router.push('/')
+            }
+
+        } catch (error) {
+            console.log(error)
+        } finally {
+            console.log("finally")
+
+        }
     }
 
     return (
@@ -38,11 +66,9 @@ const Header = () => {
                                 </button>
                             </>
                         ) : (
-                            <>
-                                <button onClick={loginBtn} className='md:hidden black_btn'>
-                                    Sign in
-                                </button>
-                            </>
+                            <button onClick={loginBtn} className='md:hidden black_btn'>
+                                Sign in
+                            </button>
                         )
                     }
                 </div>
@@ -51,7 +77,6 @@ const Header = () => {
                 {
                     currentUser ? (
                         <>
-
                             <div className="md:flex hidden flex flex-grow justify-end flex-wrap items-center">
                                 <span>Hello, {currentUser.name}!</span>
                                 <button onClick={logoutBtn} className='black_btn'>
