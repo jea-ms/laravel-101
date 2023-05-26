@@ -1,9 +1,10 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Form from "@components/Form"
 import TitlePage from "@components/TitlePage"
+import Cookies from 'js-cookie'
 
 const NewProduct = () => {
   const API_PRODUCT_URL = process.env.API_PRODUCT_URL
@@ -15,6 +16,18 @@ const NewProduct = () => {
     description: '',
     price: '',
   })
+
+  const cookie = Cookies.get('currentUser')
+  const token = Cookies.get('apiToken')
+
+  const [currentUser, setCurrentUser] = useState()
+  const [currentToken, setCurrentToken] = useState()
+
+  useEffect(() => {
+    setCurrentUser(cookie ? JSON.parse(cookie) : null)
+    setCurrentToken(token ? JSON.parse(token) : '')
+
+  }, [])
 
   const onCancel = async () => {
     router.push('/')
@@ -28,7 +41,9 @@ const NewProduct = () => {
       const response = await fetch(API_PRODUCT_URL, {
         method: 'POST',
         headers: {
-          'Content-type': 'application/json'
+          'Content-type': 'application/json',
+          'Authorization': 'Bearer ' + currentToken,
+          'Accept': 'application/json',
         },
         body: JSON.stringify(product)
       })
