@@ -12,15 +12,12 @@ const Home = () => {
     const router = useRouter()
     const [products, setProducts] = useState([])
 
-    const cookie = Cookies.get('currentUser')
-    const token = Cookies.get('apiToken')
-
     const [currentUser, setCurrentUser] = useState()
     const [currentToken, setCurrentToken] = useState()
 
     useEffect(() => {
-        setCurrentUser(cookie ? JSON.parse(cookie) : null)
-        setCurrentToken(token ? JSON.parse(token) : '')
+        setCurrentUser(Cookies.get('currentUser') ? JSON.parse(Cookies.get('currentUser')) : null)
+        setCurrentToken(Cookies.get('apiToken') ? JSON.parse(Cookies.get('apiToken')) : '')
 
         const getProducts = async () => {
             console.log(API_PRODUCT_URL);

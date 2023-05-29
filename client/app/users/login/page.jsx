@@ -23,10 +23,10 @@ const Login = ({ data }) => {
   const [currentToken, setCurrentToken] = useState()
 
   useEffect(() => {
-    setCurrentUser(cookie ? JSON.parse(cookie) : null)
-    setCurrentToken(token ? JSON.parse(token) : '')
+    setCurrentUser(Cookies.get('currentUser') ? JSON.parse(Cookies.get('currentUser')) : null)
+    setCurrentToken(Cookies.get('apiToken') ? JSON.parse(Cookies.get('apiToken')) : '')
 
-    if(cookie) router.push("/")
+    if (currentUser) router.push("/")
 
   }, [])
 
@@ -50,6 +50,9 @@ const Login = ({ data }) => {
       if (response.ok) {
         Cookies.set('currentUser', JSON.stringify(data.user), { expires: 0.5 })
         Cookies.set('apiToken', JSON.stringify(data.token), { expires: 0.5 })
+        setCurrentUser(Cookies.get('currentUser') ? JSON.parse(Cookies.get('currentUser')) : null)
+        setCurrentToken(Cookies.get('apiToken') ? JSON.parse(Cookies.get('apiToken')) : '')
+
         router.push('/')
       } else {
         Cookies.set('currentUser', '', { expires: 0 })

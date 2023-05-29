@@ -14,11 +14,11 @@ const Header = () => {
     const [currentToken, setCurrentToken] = useState()
 
     useEffect(() => {
-        
-        setCurrentUser(cookie ? JSON.parse(cookie) : null)
-        
-        setCurrentToken(token ? JSON.parse(token) : '')
-        
+
+        setCurrentUser(Cookies.get('currentUser') ? JSON.parse(Cookies.get('currentUser')) : null)
+        setCurrentToken(Cookies.get('apiToken') ? JSON.parse(Cookies.get('apiToken')) : '')
+
+
     }, [])
 
     const loginBtn = () => {
@@ -43,7 +43,9 @@ const Header = () => {
             if (response.ok) {
                 Cookies.set('currentUser', '', { expires: 0 })
                 Cookies.set('apiToken', '', { expires: 0 })
-                
+                setCurrentUser(Cookies.get('currentUser') ? JSON.parse(Cookies.get('currentUser')) : null)
+                setCurrentToken(Cookies.get('apiToken') ? JSON.parse(Cookies.get('apiToken')) : '')
+            
                 router.push('/')
             }
 
