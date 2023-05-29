@@ -43,6 +43,7 @@ const Header = () => {
             if (response.ok) {
                 Cookies.set('currentUser', '', { expires: 0 })
                 Cookies.set('apiToken', '', { expires: 0 })
+                
                 router.push('/')
             }
 

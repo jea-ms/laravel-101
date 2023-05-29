@@ -35,7 +35,7 @@ const Login = ({ data }) => {
     // setSubmitting(true)
 
     const url = API_URL + '/login'
-    console.log(url)
+    // console.log(url)
     try {
       const response = await fetch(url, {
         method: 'POST',
@@ -46,7 +46,7 @@ const Login = ({ data }) => {
       })
 
       const data = await response.json()
-      console.log(data)
+      // console.log(data)
       if (response.ok) {
         Cookies.set('currentUser', JSON.stringify(data.user), { expires: 0.5 })
         Cookies.set('apiToken', JSON.stringify(data.token), { expires: 0.5 })
@@ -56,7 +56,7 @@ const Login = ({ data }) => {
         Cookies.set('apiToken', '', { expires: 0 })
       }
 
-      console.log(response)
+      // console.log(response)
 
     } catch (error) {
       console.log(error)
