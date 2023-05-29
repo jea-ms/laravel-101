@@ -48,8 +48,8 @@ const Login = ({ data }) => {
       const data = await response.json()
       console.log(data)
       if (response.ok) {
-        Cookies.set('currentUser', JSON.stringify(data.user), { expires: 1440 })
-        Cookies.set('apiToken', JSON.stringify(data.token), { expires: 1440 })
+        Cookies.set('currentUser', JSON.stringify(data.user), { expires: 0.5 })
+        Cookies.set('apiToken', JSON.stringify(data.token), { expires: 0.5 })
         router.push('/')
       } else {
         Cookies.set('currentUser', '', { expires: 0 })
@@ -68,7 +68,6 @@ const Login = ({ data }) => {
   }
 
   const onCancel = async () => {
-    Cookies.set('name', "jea", { expires: 1440 })
     router.push('/')
   }
 
