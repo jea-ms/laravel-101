@@ -80,6 +80,7 @@ const Login = ({ data }) => {
       <div className="container flex flex-col items-center justify-center mx-auto rounded-lg ">
         <TitlePage
           title='Sign In'
+          hasUser={(currentUser != null) ? true : false}
           showBtnAdd={false}
           onAdd={() => { }}
           onCancel={onCancel} />
