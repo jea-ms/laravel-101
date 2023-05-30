@@ -1,6 +1,6 @@
 import ProductCard from './ProductCard'
 
-const ProductList = ({ data, onEdit, onDelete }) => {
+const ProductList = ({ data, onEdit, onDelete, hasUser }) => {
     return (
         <div>
             {
@@ -11,6 +11,7 @@ const ProductList = ({ data, onEdit, onDelete }) => {
                             product={prod}
                             onEdit={onEdit}
                             onDelete={onDelete}
+                            hasUser={hasUser}
                         />
                     ))
                 ) : (
@@ -21,10 +22,11 @@ const ProductList = ({ data, onEdit, onDelete }) => {
     )
 }
 
-const Products = ({ products, onEdit, onDelete }) => {
+const Products = ({ products, onEdit, onDelete, hasUser }) => {
     return (
         <div>
             <ProductList
+                hasUser={hasUser}
                 data={products}
                 onEdit={onEdit}
                 onDelete={onDelete} />

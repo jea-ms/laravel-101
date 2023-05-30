@@ -49,7 +49,7 @@ const Home = () => {
                         'Content-type': 'application/json',
                         'Authorization': 'Bearer ' + currentToken,
                         'Accept': 'application/json',
-                      },
+                    },
                 }).then(() => {
                     setProducts(products.filter((prod) => prod.id !== id))
                 }).catch(err => {
@@ -61,16 +61,19 @@ const Home = () => {
         }
         console.log('delete', id)
     }
+
     return (
         <div className="grr max-w-7xl pt-20 mx-auto text-center">
             <div className="container flex flex-col items-center justify-center mx-auto rounded-lg ">
                 <TitlePage
                     title='Products'
+                    hasUser={(currentUser != null) ? true : false}
                     showBtnAdd={true}
                     onAdd={onAdd}
                     onCancel={() => { }} />
                 <div className='object-cover object-center w-3/4 mb-10 g327 border rounded-lg shadow-md'>
                     <Products
+                        hasUser={(currentUser != null) ? true : false}
                         products={products}
                         onEdit={editProduct}
                         onDelete={deleteProduct} />

@@ -21,7 +21,6 @@ const RootLayout = ({ children }) => {
     return (
         <html lang="en">
             <body>
-                <Provider>
                 <Head>
                     <title>Company Inc.</title>
                     <link rel="icon" href="/" />
@@ -37,7 +36,6 @@ const RootLayout = ({ children }) => {
                     </section>
                 </main>
                 <Footer />
-                </Provider>
             </body>
         </html>
     )
