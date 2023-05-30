@@ -62,6 +62,7 @@ const NewProduct = () => {
     <div className="grr max-w-7xl pt-20 mx-auto text-center">
       <div className="container flex flex-col items-center justify-center mx-auto rounded-lg ">
         <TitlePage
+          hasUser={(currentUser != null) ? true : false}
           title='Add Product'
           showBtnAdd={false}
           onAdd={() => { }}

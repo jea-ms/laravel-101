@@ -91,7 +91,7 @@ const Login = ({ data }) => {
             onSubmit={loginUser}
           />
         </div>
-        <span>New to Company?
+        <span className='hidden'>New to Company?
           <Link href="/"
             style={{
               textDecoration: 'underline',
